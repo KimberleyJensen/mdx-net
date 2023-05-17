@@ -27,6 +27,7 @@ https://github.com/KimberleyJensen/mdx-net/blob/f331b185db1fb63bc87b80b228499345
 https://github.com/KimberleyJensen/mdx-net/blob/f331b185db1fb63bc87b80b22849934577c95b78/src/datamodules/datasets/musdb.py#L43
 
 Change the target source in this line if you are not using vocals
+
 https://github.com/KimberleyJensen/mdx-net/blob/f331b185db1fb63bc87b80b22849934577c95b78/src/datamodules/datasets/musdb.py#LL86C76-L86C76
 
 Inside the data folder there is a folder called train, put your training track folders and validation track folders inside the train folder.
@@ -46,6 +47,11 @@ Open configs/datamodule/musdb18_hq.yaml
 Under validation_set: is where you put the names of the folders of your validation set (delete the ones that are already there)
 
 ## 3. Training
+If you are training a bass, drums or other model you need to change BatchNorm2d with GroupNorm at all points in these files
+https://github.com/KimberleyJensen/mdx-net/blob/Leaderboard_B/src/models/mdxnet.py
+https://github.com/KimberleyJensen/mdx-net/blob/Leaderboard_B/src/models/modules.py
+
+The bass model was traned with num_groups=4 while the drums and other model was trained with num_groups=2
 
 Make sure you are in the mdx-net directory in the command line and you have run conda activate mdx-net if you are using ubuntu
 
