@@ -1,7 +1,7 @@
 # KUIELab-MDX-Net
 
-- This is a modified KUIELab-MDX-Net to train a vocal model with just the vocals and instrumental (no bass, drums or other stem needed)
-
+- This is a modified KUIELab-MDX-Net used to train the models for the aicrowd music demixing challenge.
+- 
 ## 0. Environment
 
 - I used Ubuntu 18.04
@@ -20,8 +20,11 @@ sudo apt-get install soundstretch
 
 ## 2. Preparing data and files
 
-For training data you need 3 audio files per track and folder. One called vocals.wav that contains the acapella, One called other.wav that contains the instrumental, One called mixture.wav that contains the acapella from vocals.wav and instrumental from other.wav mixed together. Each track in your dataset needs its own folder.
-For validation data you only need 2 audio files per track and folder, one called vocals.wav and one called mixture.wav, Do not use the same data for training and validation !!
+Each model was trained using three files wav files, the mixture, the target source and the mixture minus target source. For the vocals, bass and drums model, the mixture was called mixture.wav, vocals bass or drums.wav and other.wav. for the other model I used mixture.wav, other.wav and notother.wav
+
+Edit the source files at these two places
+https://github.com/KimberleyJensen/mdx-net/blob/f331b185db1fb63bc87b80b22849934577c95b78/configs/datamodule/musdb18_hq.yaml#L14-L16
+https://github.com/KimberleyJensen/mdx-net/blob/f331b185db1fb63bc87b80b22849934577c95b78/src/datamodules/datasets/musdb.py#L43
 
 Inside the data folder there is a folder called train, put your training track folders and validation track folders inside the train folder.
 
@@ -43,20 +46,7 @@ Under validation_set: is where you put the names of the folders of your validati
 
 Make sure you are in the mdx-net directory in the command line and you have run conda activate mdx-net if you are using ubuntu
 
-Copy the command below to start training
+Copy the command below to start training, change multigpu_vocals and ConvTDFNet_vocals to multigpu_bass and ConvTDFNet_bass if you want to train a bass model and the same changes for drums and other.
 
 python run.py experiment=multigpu_vocals model=ConvTDFNet_vocals
 
-## 4. Separation
-https://github.com/kuielab/mdx-net-submission/tree/leaderboard_B
-
-## 5. Extra information
-
-You might want to or need to change the batch size in configs/experiment/multigpu_vocals.yaml depending on your PC, the default batch size is 6 that works on a 16gb gpu
-
-If you want to change how often validation is done go to mdx-net/configs/trainer/minimal.yaml and change check_val_every_n_epoch: 1 to the number you would like.
-
-# ACKNOWLEDGEMENT
-- https://github.com/kuielab/mdx-net for the code and https://github.com/ws-choi for everything he has helped me with 
-- This repository is based on [Lightning-Hydra Template](https://github.com/ashleve/lightning-hydra-template)
-- Also, facebook/[demucs](https://github.com/facebookresearch/demucs)
