@@ -3,9 +3,9 @@ _target_: src.models.mdxnet.ConvTDFNet
 target_name: 'bass'
 
 # model
-num_blocks: 11
-l: 3
-g: 32
+num_blocks: 15
+l: 4
+g: 40
 k: 3
 bn: 8
 bias: False
