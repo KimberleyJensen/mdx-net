@@ -27,9 +27,7 @@ https://github.com/KimberleyJensen/mdx-net/blob/f331b185db1fb63bc87b80b228499345
 https://github.com/KimberleyJensen/mdx-net/blob/f331b185db1fb63bc87b80b22849934577c95b78/src/datamodules/datasets/musdb.py#L43
 
 Change the target source in this line if you are not using vocals
-
-https://github.com/KimberleyJensen/mdx-net/blob/f331b185db1fb63bc87b80b22849934577c95b78/src/datamodules/datasets/musdb.py#LL86C76-L86C76
-
+https://github.com/KimberleyJensen/mdx-net/blob/29f3828d423f5cfadac4cac8e17cfadb2c930151/src/datamodules/datasets/musdb.py#L86
 Inside the data folder there is a folder called train, put your training track folders and validation track folders inside the train folder.
 
 Sign up to https://wandb.ai/site . once you are logged in go to https://wandb.ai/settings and copy your API key.
